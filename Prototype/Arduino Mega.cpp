@@ -4,8 +4,8 @@ const int LPWM_R = 9;
 const int RPWM_R = 10;
 
 const unsigned long travelTime = 2000;
-const int motorSpeed = 220;
-const int pulseCount = 6;
+const int motorSpeed = 220;           
+const int pulseCount = 6;             
 
 void setup() {
   pinMode(LPWM_L, OUTPUT);
