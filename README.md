@@ -16,11 +16,11 @@ An autonomous vehicle project developed by a team of 9, 4 from AI/ML Department,
 
 # 🛠️ Project Phases
 
-Phase	    Objective	                                   Status
-Phase 0	    Basic Actuation (Manual U-Turns/Movement)	    ✅ Completed
-Phase 1 	Data Perception & Simulation (Gazebo/ROS 2)	🏗️  In Progress
-Phase 2	    Autonomy & Algorithm Integration (SLAM/YOLO)	📅 Planned
-Phase 3 	Hardware Deployment & Real-World Testing	    📅 Planned
+Phase,	    Objective,	                                        Status,
+Phase 0:	Basic Actuation (Manual U-Turns/Movement),	        ✅ Completed;
+Phase 1: 	Data Perception & Simulation (Gazebo/ROS 2)	🏗️,      In Progress;
+Phase 2:	Autonomy & Algorithm Integration (SLAM/YOLO),	    📅 Planned;
+Phase 3: 	Hardware Deployment & Real-World Testing,	        📅 Planned;
 
 
 # 👥 Cross-Functional Team
