@@ -35,7 +35,7 @@ Computer Science & AI/ML Department
 
     Shuksham (SLAM Lead): Mapping & Navigation Stack.
 
-Electronics & Communication Department.
+Electronics & Communication Department
 
     Chirag: Power Management, Sensor Interfacing (LiDAR/IMU), and Logic Level Shifting.
 
@@ -43,7 +43,7 @@ Electronics & Communication Department.
 
     Anant:
 
-Mechanical Engineering Department.
+Mechanical Engineering Department
 
     Prashast Jain: Chassis Design, Material Selection, and Weight Distribution.
 
