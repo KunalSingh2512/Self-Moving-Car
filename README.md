@@ -37,17 +37,17 @@ Computer Science & AI/ML Department
 
 Electronics & Communication Department
 
-    Chirag: Power Management, Sensor Interfacing (LiDAR/IMU), and Logic Level Shifting.
+    Chirag: Sensor Interfacing, Logic Level Shifting
 
-    Varun Kundani: Motor Driver Calibration and Battery Management Systems (BMS).
-
-    Anant:
+    Varun Kundnani: Motor driver calibration, BMS, Power Management
 
 Mechanical Engineering Department
 
-    Prashast Jain: Chassis Design, Material Selection, and Weight Distribution.
+    Prashast Jain: Chassis Design, Material Selection, Drivetrain Assembly
 
-    Deepanshu: Drivetrain Assembly and Wheel Alignment.
+    Anant Sidana: Chassis Design, Material Selection, Weight Distribution
+
+    Deepanshu: Chassis Design, Wheel Alignment
 
 
 # 🚀 Phase 1: Simulation Goals
