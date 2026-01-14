@@ -1,6 +1,6 @@
 # Self Moving Car: AI/ML 🏎️🤖
 
-    sAn autonomous vehicle project developed by a team of 9, 4 from AI/ML Department, 2 from Electronic Department, and 3 from Mechanical Department. This project follows a phased approach, starting from basic actuation to full autonomous navigation using ROS 2 and Computer Vision.
+An autonomous vehicle project developed by a team of 9, 4 from AI/ML Department, 2 from Electronic Department, and 3 from Mechanical Department. This project follows a phased approach, starting from basic actuation to full autonomous navigation using ROS 2 and Computer Vision.
 
 
 # 📁 Repository Structure
