@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_bot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_car">
 
     <xacro:property name="wheel_offset_x" value="0.2"/>  
     <xacro:property name="wheel_offset_y" value="0.22"/> 
