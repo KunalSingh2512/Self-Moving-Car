@@ -245,4 +245,14 @@
         </sensor>
     </gazebo>
 
+    <gazebo reference="left_front_wheel">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+    </gazebo>
+
+    <gazebo reference="right_front_wheel">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+    </gazebo>
+
 </robot>
