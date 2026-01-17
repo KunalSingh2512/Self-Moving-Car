@@ -1,19 +1,18 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_car">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_bot">
 
     <xacro:property name="wheel_offset_x" value="0.2"/>  
-    <xacro:property name="wheel_offset_y" value="0.24"/> 
-    <xacro:property name="wheel_radius" value="0.06"/>
+    <xacro:property name="wheel_offset_y" value="0.25"/> <xacro:property name="wheel_radius" value="0.06"/>
     <xacro:property name="wheel_width" value="0.04"/>
-    <xacro:property name="wheel_drop" value="0.04"/> 
-
-    <xacro:property name="base_width" value="${2 * wheel_offset_y - wheel_width}"/>
+    <xacro:property name="wheel_drop" value="0.05"/> <xacro:property name="base_width" value="${2 * wheel_offset_y - wheel_width - 0.05}"/>
     <xacro:property name="base_length" value="${2 * wheel_offset_x + 0.3}"/>
     <xacro:property name="base_thickness" value="0.02"/>
 
     <xacro:property name="stack_length" value="0.4"/> 
     <xacro:property name="stack_width" value="0.25"/>
-    <xacro:property name="level_1_height" value="0.12"/> <xacro:property name="level_2_height" value="0.10"/> <xacro:property name="platform_thickness" value="0.01"/>
+    <xacro:property name="level_1_height" value="0.12"/>
+    <xacro:property name="level_2_height" value="0.10"/>
+    <xacro:property name="platform_thickness" value="0.01"/>
     
     <xacro:property name="ramp_run" value="${(base_length - stack_length) / 2}"/>
     <xacro:property name="ramp_rise" value="${level_1_height}"/>
@@ -27,8 +26,7 @@
     <material name="grey"><color rgba="0.5 0.5 0.5 1"/></material>
     <material name="metal"><color rgba="0.8 0.8 0.8 1"/></material>
     <material name="red"><color rgba="1 0 0 1"/></material>
-
-    <xacro:macro name="box_inertia" params="m l w h">
+    <material name="purple"><color rgba="1 0 1 1"/></material> <xacro:macro name="box_inertia" params="m l w h">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <mass value="${m}"/>
@@ -69,7 +67,6 @@
         <child link="level_1"/>
         <origin xyz="0 0 ${base_thickness/2 + level_1_height/2}"/>
     </joint>
-
     <link name="level_1">
         <visual>
             <geometry><box size="${stack_length} ${stack_width} ${level_1_height}"/></geometry>
@@ -87,13 +84,8 @@
         <origin xyz="${stack_length/2 + ramp_run/2} 0 ${base_thickness/2 + ramp_rise/2}" rpy="0 ${ramp_angle} 0"/>
     </joint>
     <link name="front_ramp">
-        <visual>
-            <geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry>
-            <material name="metal"/>
-        </visual>
-        <collision>
-            <geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry>
-        </collision>
+        <visual><geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry><material name="metal"/></visual>
+        <collision><geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry></collision>
     </link>
 
     <joint name="rear_ramp_joint" type="fixed">
@@ -102,13 +94,8 @@
         <origin xyz="-${stack_length/2 + ramp_run/2} 0 ${base_thickness/2 + ramp_rise/2}" rpy="0 -${ramp_angle} 0"/>
     </joint>
     <link name="rear_ramp">
-        <visual>
-            <geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry>
-            <material name="metal"/>
-        </visual>
-        <collision>
-            <geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry>
-        </collision>
+        <visual><geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry><material name="metal"/></visual>
+        <collision><geometry><box size="${ramp_length} ${stack_width} 0.02"/></geometry></collision>
     </link>
 
     <joint name="platform1_joint" type="fixed">
@@ -116,12 +103,8 @@
         <child link="platform_1"/>
         <origin xyz="0 0 ${level_1_height/2 + platform_thickness/2}"/>
     </joint>
-
     <link name="platform_1">
-        <visual>
-            <geometry><box size="${stack_length} ${stack_width} ${platform_thickness}"/></geometry>
-            <material name="orange"/>
-        </visual>
+        <visual><geometry><box size="${stack_length} ${stack_width} ${platform_thickness}"/></geometry><material name="orange"/></visual>
     </link>
 
     <joint name="level_2_joint" type="fixed">
@@ -129,7 +112,6 @@
         <child link="level_2"/>
         <origin xyz="0 0 ${platform_thickness/2 + level_2_height/2}"/>
     </joint>
-
     <link name="level_2">
         <visual>
             <geometry><box size="${stack_length} ${stack_width} ${level_2_height}"/></geometry>
@@ -146,12 +128,8 @@
         <child link="roof"/>
         <origin xyz="0 0 ${level_2_height/2 + platform_thickness/2}"/>
     </joint>
-
     <link name="roof">
-        <visual>
-            <geometry><box size="${stack_length} ${stack_width} ${platform_thickness}"/></geometry>
-            <material name="orange"/>
-        </visual>
+        <visual><geometry><box size="${stack_length} ${stack_width} ${platform_thickness}"/></geometry><material name="orange"/></visual>
     </link>
 
     <xacro:macro name="wheel" params="name x y">
@@ -185,10 +163,7 @@
         <origin xyz="0 0 0.03" rpy="0 0 0"/>
     </joint>
     <link name="laser_frame">
-        <visual>
-            <geometry><cylinder radius="0.03" length="0.04"/></geometry>
-            <material name="blue"/>
-        </visual>
+        <visual><geometry><cylinder radius="0.03" length="0.04"/></geometry><material name="blue"/></visual>
     </link>
 
     <joint name="camera_joint" type="fixed">
@@ -197,29 +172,26 @@
         <origin xyz="${stack_length/2 + 0.01} 0 0.02" rpy="0 0 0"/> 
     </joint>
     <link name="camera_link">
-        <visual>
-            <geometry><box size="0.02 0.04 0.02"/></geometry>
-            <material name="red"/>
-        </visual>
+        <visual><geometry><box size="0.02 0.04 0.02"/></geometry><material name="red"/></visual>
     </link>
 
     <joint name="imu_joint" type="fixed">
         <parent link="level_2"/>
         <child link="imu_link"/>
-        <origin xyz="0 0 0.02"/> 
-    </joint>
+        <origin xyz="0 0 0.06"/> </joint>
     <link name="imu_link">
         <visual>
-            <geometry><box size="0.02 0.02 0.01"/></geometry>
-            <material name="black"/>
-        </visual>
+            <geometry><box size="0.06 0.06 0.06"/></geometry> <material name="purple"/> </visual>
     </link>
 
-<gazebo>
+    <gazebo>
         <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
             
             <left_joint>left_rear_wheel_joint</left_joint>
             <right_joint>right_rear_wheel_joint</right_joint>
+            <left_joint>left_front_wheel_joint</left_joint>
+            <right_joint>right_front_wheel_joint</right_joint>
+
             <wheel_separation>${2 * wheel_offset_y}</wheel_separation>
             <wheel_diameter>${2 * wheel_radius}</wheel_diameter>
 
@@ -233,6 +205,14 @@
             <publish_wheel_tf>true</publish_wheel_tf>
 
         </plugin>
+        
+        <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <update_rate>20</update_rate>
+            <joint_name>left_front_wheel_joint</joint_name>
+            <joint_name>right_front_wheel_joint</joint_name>
+            <joint_name>left_rear_wheel_joint</joint_name>
+            <joint_name>right_rear_wheel_joint</joint_name>
+        </plugin>
     </gazebo>
 
     <gazebo reference="laser_frame">
@@ -241,23 +221,11 @@
             <visualize>true</visualize>
             <update_rate>10</update_rate>
             <ray>
-                <scan>
-                    <horizontal>
-                        <samples>360</samples>
-                        <resolution>1</resolution>
-                        <min_angle>-3.14</min_angle>
-                        <max_angle>3.14</max_angle>
-                    </horizontal>
-                </scan>
-                <range>
-                    <min>0.3</min>
-                    <max>12</max>
-                </range>
+                <scan><horizontal><samples>360</samples><resolution>1</resolution><min_angle>-3.14</min_angle><max_angle>3.14</max_angle></horizontal></scan>
+                <range><min>0.3</min><max>12</max></range>
             </ray>
             <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
-                <ros>
-                    <argument>~/out:=scan</argument>
-                </ros>
+                <ros><argument>~/out:=scan</argument></ros>
                 <output_type>sensor_msgs/LaserScan</output_type>
                 <frame_name>laser_frame</frame_name>
             </plugin>
@@ -270,29 +238,13 @@
             <update_rate>10.0</update_rate>
             <camera>
                 <horizontal_fov>1.089</horizontal_fov>
-                <image>
-                    <format>R8G8B8</format>
-                    <width>640</width>
-                    <height>480</height>
-                </image>
-                <clip>
-                    <near>0.05</near>
-                    <far>8.0</far>
-                </clip>
+                <image><format>R8G8B8</format><width>640</width><height>480</height></image>
+                <clip><near>0.05</near><far>8.0</far></clip>
             </camera>
             <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
                 <frame_name>camera_link</frame_name>
             </plugin>
         </sensor>
     </gazebo>
-	<gazebo>
-        <plugin name="gazebo_ros_joint_state_publisher"
-            filename="libgazebo_ros_joint_state_publisher.so">
-            <update_rate>20</update_rate>
-            <joint_name>left_front_wheel_joint</joint_name>
-            <joint_name>right_front_wheel_joint</joint_name>
-            <joint_name>left_rear_wheel_joint</joint_name>
-            <joint_name>right_rear_wheel_joint</joint_name>
-        </plugin>
-    </gazebo>
+
 </robot>
