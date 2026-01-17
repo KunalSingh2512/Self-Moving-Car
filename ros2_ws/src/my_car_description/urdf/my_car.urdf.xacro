@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_bot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_car">
 
     <xacro:property name="wheel_offset_x" value="0.2"/>  
     <xacro:property name="wheel_offset_y" value="0.25"/> 
@@ -14,7 +14,7 @@
     <xacro:property name="stack_length" value="0.4"/> 
     <xacro:property name="stack_width" value="0.25"/>
     <xacro:property name="level_1_height" value="0.12"/>
-    <xacro:property name="level_2_height" value="0.10"/>
+    <xacro:property name="level_2_height" value="0.12"/>
     <xacro:property name="platform_thickness" value="0.01"/>
 
     <xacro:property name="ramp_run" value="${(base_length - stack_length) / 2}"/>
@@ -173,7 +173,7 @@
     <joint name="imu_joint" type="fixed">
         <parent link="level_2"/>
         <child link="imu_link"/>
-        <origin xyz="0 0 0.05"/> 
+        <origin xyz="0 0 -0.034"/> 
     </joint>
     <link name="imu_link">
         <visual><geometry><box size="0.05 0.05 0.05"/></geometry><material name="purple"/></visual>
