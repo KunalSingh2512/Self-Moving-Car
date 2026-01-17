@@ -189,8 +189,6 @@
             
             <left_joint>left_rear_wheel_joint</left_joint>
             <right_joint>right_rear_wheel_joint</right_joint>
-            <left_joint>left_front_wheel_joint</left_joint>
-            <right_joint>right_front_wheel_joint</right_joint>
 
             <wheel_separation>${2 * wheel_offset_y}</wheel_separation>
             <wheel_diameter>${2 * wheel_radius}</wheel_diameter>
