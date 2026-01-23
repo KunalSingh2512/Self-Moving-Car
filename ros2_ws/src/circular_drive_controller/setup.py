@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'mission_node = circular_drive_controller.mission_node:main',
             'control_node = circular_drive_controller.control_node:main',
+            'mock_robot = circular_drive_controller.mock_robot:main',
         ],
     },
 )
