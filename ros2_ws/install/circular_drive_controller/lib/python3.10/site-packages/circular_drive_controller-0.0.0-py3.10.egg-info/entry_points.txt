@@ -1,5 +1,4 @@
 [console_scripts]
 control_node = circular_drive_controller.control_node:main
 mission_node = circular_drive_controller.mission_node:main
-mock_robot = circular_drive_controller.mock_robot:main
 
