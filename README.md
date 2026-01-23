@@ -11,8 +11,6 @@ An autonomous vehicle project developed by a team of 9, 4 from AI/ML Department,
 
     ros2_ws/: The ROS 2 Humble workspace containing the high-level intelligence and simulation environments.
 
-    scripts/: Utility scripts for automation and data logging.
-
 
 # 🛠️ Project Phases
 
