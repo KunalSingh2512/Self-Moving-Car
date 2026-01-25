@@ -67,7 +67,7 @@
         <origin xyz="0 0 ${base_thickness/2 + level_1_height/2}"/>
     </joint>
     <link name="level_1">
-        <visual><geometry><box size="${stack_length} ${stack_width} ${level_1_height}"/></geometry><material name="white"/></visual>
+        <visual><geometry><box size="${stack_length} ${stack_width} ${level_1_height}"/></geometry><material name="metal"/></visual>
         <collision><geometry><box size="${stack_length} ${stack_width} ${level_1_height}"/></geometry></collision>
         <xacro:box_inertia m="2.0" l="${stack_length}" w="${stack_width}" h="${level_1_height}"/>
     </link>
@@ -107,7 +107,7 @@
         <origin xyz="0 0 ${platform_thickness/2 + level_2_height/2}"/>
     </joint>
     <link name="level_2">
-        <visual><geometry><box size="${stack_length} ${stack_width} ${level_2_height}"/></geometry><material name="grey"/></visual>
+        <visual><geometry><box size="${stack_length} ${stack_width} ${level_2_height}"/></geometry><material name="metal"/></visual>
         <collision><geometry><box size="${stack_length} ${stack_width} ${level_2_height}"/></geometry></collision>
         <xacro:box_inertia m="1.0" l="${stack_length}" w="${stack_width}" h="${level_2_height}"/>
     </link>
