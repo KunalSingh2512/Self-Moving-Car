@@ -1,9 +1,0 @@
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/uninstall.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/my_car_description_uninstall.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/test.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/edit_cache.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/rebuild_cache.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/list_install_components.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/install.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/install/local.dir
-/home/kunal-singh/Desktop/Self_Moving_Car/build/my_car_description/CMakeFiles/install/strip.dir
