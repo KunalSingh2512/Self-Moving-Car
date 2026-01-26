@@ -23,13 +23,12 @@ class MissionNode(Node):
         self.current_longitude = 0.0
         self.gnss_received = False
 
-        # Sends X,Y target coordinates to the Abhay
+        # Sends X,Y target coordinates to Abhay
         self.publisher_ = self.create_publisher(Point, '/target_waypoint', 10)
         self.timer = self.create_timer(2.0, self.timer_callback)
         
-        self.get_logger().info('Mission Node Started: Listening for GNSS & Waiting to send points...')
+        self.get_logger().info('Mission Node Started: Broadcasting Static Points (Waiting for GNSS Logic)...')
     
-    # Update position whenever hardware sends data
     def gnss_callback(self, msg):
         self.current_latitude = msg.latitude
         self.current_longitude = msg.longitude
@@ -39,33 +38,40 @@ class MissionNode(Node):
         msg = Point()
         
         # ==========================================
-        # TODO: SHUKSHAM'S AREA (EDIT BELOW)
+        # STATIC DEFAULT 
         # ==========================================
-        # Instructions:
-        # 1. You now have access to self.current_latitude and self.current_longitude
-        # 2. Logic: "If I am at Latitute X, go to Point Y"
+        # We set a default point so Abhay's code ALWAYS has something to drive to.
+        # Even if GNSS fails, the car will try to go 2 meters forward.
+        msg.x = 2.0 
+        msg.y = 0.0
+        msg.z = 0.0
+
+        # ==========================================
+        # 2. SHUKSHAM'S AREA
+        # ==========================================
+        # Instructions for Shuksham:
+        # The code above sets a static target (2.0 meters).
+        # Use the block below to OVERWRITE msg.x and msg.y based on GNSS data.
         
         if self.gnss_received:
-            # Printing the live data for now
-            self.get_logger().info(f'Current GPS: Lat={self.current_latitude}, Lon={self.current_longitude}')
+            self.get_logger().info(f'GNSS Fix: Lat={self.current_latitude}, Lon={self.current_longitude}')
             
-            # NOTE: Remember the GNSS is physically at -0.12m (rear of chassis).
+            # WRITE LOGIC HERE
+            # Example: 
+            # if self.current_latitude > 28.5:
+            #     msg.x = 5.0  (Change target to 5 meters)
+            #     msg.y = 1.0  (Change target to 1 meter left)
+            pass 
 
-            # Example Logic (Replace this):
-            msg.x = 1.0 
-            msg.y = 0.0
-            msg.z = 0.0
         else:
-            self.get_logger().warning('Waiting for GNSS fix...')
+            self.get_logger().warning('No GNSS Fix yet. Sending Static Default (2.0m)...')
         
         # ==========================================
         # END OF SHUKSHAM'S AREA
         # ==========================================
         
         self.publisher_.publish(msg)
-        # Only log publish if we actually have data to avoid clutter
-        if self.gnss_received:
-            self.get_logger().info(f'Published Target: x={msg.x}, y={msg.y}')
+        self.get_logger().info(f'Published Target: x={msg.x}, y={msg.y}')
 
 def main(args=None):
     rclpy.init(args=args)
