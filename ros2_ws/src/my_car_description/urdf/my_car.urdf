@@ -28,6 +28,9 @@
   <material name="purple">
     <color rgba="1 0 1 1"/>
   </material>
+  <material name="yellow">
+    <color rgba="1 1 0 1"/>
+  </material>
   <link name="base_link"/>
   <joint name="supreme_base_joint" type="fixed">
     <parent link="base_link"/>
@@ -263,7 +266,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="roof"/>
     <child link="laser_frame"/>
-    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    <origin rpy="0 0 0" xyz="0 0 0.025"/>
   </joint>
   <link name="laser_frame">
     <visual>
@@ -276,7 +279,7 @@
   <joint name="camera_joint" type="fixed">
     <parent link="roof"/>
     <child link="camera_link"/>
-    <origin rpy="0 0 0" xyz="0.16 0 0.02"/>
+    <origin rpy="0 0 0" xyz="0.16 0 0.015"/>
   </joint>
   <link name="camera_link">
     <visual>
@@ -297,6 +300,19 @@
         <box size="0.05 0.05 0.05"/>
       </geometry>
       <material name="purple"/>
+    </visual>
+  </link>
+  <joint name="gnss_joint" type="fixed">
+    <parent link="roof"/>
+    <child link="gnss_link"/>
+    <origin rpy="0 0 0" xyz="-0.12 0 0.015"/>
+  </joint>
+  <link name="gnss_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.02"/>
+      </geometry>
+      <material name="yellow"/>
     </visual>
   </link>
   <gazebo>
@@ -392,16 +408,29 @@
       </plugin>
     </sensor>
   </gazebo>
-  <gazebo reference="supreme_base">
-    <material>Gazebo/Grey</material>
+  <gazebo reference="gnss_link">
+    <sensor name="gnss_sensor" type="gps">
+      <always_on>true</always_on>
+      <update_rate>5.0</update_rate>
+      <plugin filename="libgazebo_ros_gps_sensor.so" name="gnss_controller">
+        <ros>
+          <remapping>~/out:=/gnss/fix</remapping>
+        </ros>
+        <output_type>sensor_msgs/NavSatFix</output_type>
+        <frame_name>gnss_link</frame_name>
+      </plugin>
+    </sensor>
   </gazebo>
-  <gazebo reference="level_1">
+  <gazebo reference="supreme_base">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="front_ramp">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="rear_ramp">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="level_1">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="level_2">
@@ -413,18 +442,6 @@
   <gazebo reference="roof">
     <material>Gazebo/Orange</material>
   </gazebo>
-  <gazebo reference="left_rear_wheel">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-  <gazebo reference="right_rear_wheel">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-  <gazebo reference="left_front_wheel">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-  <gazebo reference="right_front_wheel">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
   <gazebo reference="laser_frame">
     <material>Gazebo/Blue</material>
   </gazebo>
@@ -434,25 +451,32 @@
   <gazebo reference="imu_link">
     <material>Gazebo/Purple</material>
   </gazebo>
+  <gazebo reference="gnss_link">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
   <gazebo reference="left_rear_wheel">
+    <material>Gazebo/FlatBlack</material>
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
   </gazebo>
   <gazebo reference="right_rear_wheel">
+    <material>Gazebo/FlatBlack</material>
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
   </gazebo>
   <gazebo reference="left_front_wheel">
+    <material>Gazebo/FlatBlack</material>
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
   </gazebo>
   <gazebo reference="right_front_wheel">
+    <material>Gazebo/FlatBlack</material>
     <mu1>1.0</mu1>
     <mu2>1.0</mu2>
     <kp>1000000.0</kp>
