@@ -187,7 +187,7 @@
             <right_joint>right_rear_wheel_joint</right_joint>
             <wheel_separation>${2 * wheel_offset_y}</wheel_separation>
             <wheel_diameter>${2 * wheel_radius}</wheel_diameter>
-            <max_wheel_torque>200</max_wheel_torque>
+            <max_wheel_torque>500</max_wheel_torque>
             <max_wheel_acceleration>10.0</max_wheel_acceleration>
             <odometry_frame>odom</odometry_frame>
             <robot_base_frame>base_link</robot_base_frame>
@@ -258,6 +258,67 @@
                 </ros>
             </plugin>
         </sensor>
+    </gazebo>
+
+    <gazebo reference="supreme_base">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="level_1">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="front_ramp">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="rear_ramp">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <gazebo reference="level_2">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="platform_1">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+    <gazebo reference="roof">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+    
+    <gazebo reference="left_rear_wheel">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="right_rear_wheel">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    
+    <gazebo reference="laser_frame">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="camera_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+    <gazebo reference="imu_link">
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <gazebo reference="left_rear_wheel">
+        <mu1>1.0</mu1> <mu2>1.0</mu2> <kp>1000000.0</kp> <kd>100.0</kd> </gazebo>
+    <gazebo reference="right_rear_wheel">
+        <mu1>1.0</mu1> <mu2>1.0</mu2>
+        <kp>1000000.0</kp> <kd>100.0</kd>
+    </gazebo>
+    <gazebo reference="left_front_wheel">
+        <mu1>1.0</mu1> <mu2>1.0</mu2>
+        <kp>1000000.0</kp> <kd>100.0</kd>
+    </gazebo>
+    <gazebo reference="right_front_wheel">
+        <mu1>1.0</mu1> <mu2>1.0</mu2>
+        <kp>1000000.0</kp> <kd>100.0</kd>
     </gazebo>
 
 </robot>
