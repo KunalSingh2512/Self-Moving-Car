@@ -11,6 +11,7 @@ setup.py
 circular_drive_controller/__init__.py
 circular_drive_controller/control_node.py
 circular_drive_controller/mission_node.py
+circular_drive_controller/test_ekf_logic.py
 circular_drive_controller.egg-info/PKG-INFO
 circular_drive_controller.egg-info/SOURCES.txt
 circular_drive_controller.egg-info/dependency_links.txt
