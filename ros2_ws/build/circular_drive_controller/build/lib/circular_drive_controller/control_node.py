@@ -19,7 +19,7 @@ import numpy as np
 class EKF:
     """Extended Kalman Filter for Robot Navigation with Sensor Fusion"""
     
-    def _init_(self, x0, P0, Q, R, dt):
+    def __init__(self, x0, P0, Q, R, dt):
         """
         Initialize EKF
         
@@ -186,8 +186,8 @@ class EKF:
 # =====================================================
 
 class ControlNode(Node):
-    def _init_(self):
-        super()._init_('control_node')
+    def __init__(self):
+        super().__init__('control_node')
         
         # ===== SUBSCRIBERS =====
         self.odom_sub = self.create_subscription(
@@ -207,7 +207,7 @@ class ControlNode(Node):
         Q = np.diag([0.001, 0.001, 0.0001, 0.01, 0.01, 1e-6, 1e-4, 1e-4])
         R = np.diag([3.0, 3.0, 0.1])
         
-        self.ekf = EKF(x0, P0, Q, R, dT=0.05)
+        self.ekf = EKF(x0, P0, Q, R, dt=0.05)
         self.get_logger().info("✓ EKF initialized successfully!")
         
         # ===== STATE VARIABLES =====
@@ -248,7 +248,7 @@ class ControlNode(Node):
         
         # Extract linear velocity
         self.encoder_v_linear = math.sqrt(
-            msg.twist.twist.linear.x*2 + msg.twist.twist.linear.y*2
+            msg.twist.twist.linear.x**2 + msg.twist.twist.linear.y**2
         )
         self.encoder_omega = msg.twist.twist.angular.z
 
@@ -371,5 +371,5 @@ def main(args=None):
         rclpy.shutdown()
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     main()
