@@ -4,6 +4,3 @@ source;share/circular_drive_controller/hook/pythonpath.sh
 source;share/circular_drive_controller/hook/ament_prefix_path.ps1
 source;share/circular_drive_controller/hook/ament_prefix_path.dsv
 source;share/circular_drive_controller/hook/ament_prefix_path.sh
-source;../../build/circular_drive_controller/share/circular_drive_controller/hook/pythonpath_develop.ps1
-source;../../build/circular_drive_controller/share/circular_drive_controller/hook/pythonpath_develop.dsv
-source;../../build/circular_drive_controller/share/circular_drive_controller/hook/pythonpath_develop.sh
