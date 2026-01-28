@@ -1,0 +1,24 @@
+[1.756s] Invoking command in '/home/shuksham/Self-Moving-Car/ros2_ws/src/circular_drive_controller': PYTHONPATH=/home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/circular_drive_controller build --build-base /home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/build install --record /home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/install.log --single-version-externally-managed install_data
+[2.372s] running egg_info
+[2.373s] writing ../../build/circular_drive_controller/circular_drive_controller.egg-info/PKG-INFO
+[2.374s] writing dependency_links to ../../build/circular_drive_controller/circular_drive_controller.egg-info/dependency_links.txt
+[2.375s] writing entry points to ../../build/circular_drive_controller/circular_drive_controller.egg-info/entry_points.txt
+[2.375s] writing requirements to ../../build/circular_drive_controller/circular_drive_controller.egg-info/requires.txt
+[2.375s] writing top-level names to ../../build/circular_drive_controller/circular_drive_controller.egg-info/top_level.txt
+[2.378s] reading manifest file '../../build/circular_drive_controller/circular_drive_controller.egg-info/SOURCES.txt'
+[2.383s] writing manifest file '../../build/circular_drive_controller/circular_drive_controller.egg-info/SOURCES.txt'
+[2.384s] running build
+[2.384s] running build_py
+[2.385s] running install
+[2.386s] running install_lib
+[2.392s] Sorry: IndentationError: unexpected indent (mission_node.py, line 61)
+[2.392s] byte-compiling /home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller/mission_node.py to mission_node.cpython-310.pyc
+[2.393s] running install_data
+[2.393s] running install_egg_info
+[2.395s] removing '/home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[2.396s] Copying ../../build/circular_drive_controller/circular_drive_controller.egg-info to /home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller-0.0.0-py3.10.egg-info
+[2.398s] running install_scripts
+[2.462s] Installing control_node script to /home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.464s] Installing mission_node script to /home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.464s] writing list of installed files to '/home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/install.log'
+[2.548s] Invoked command in '/home/shuksham/Self-Moving-Car/ros2_ws/src/circular_drive_controller' returned '0': PYTHONPATH=/home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/shuksham/Self-Moving-Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/circular_drive_controller build --build-base /home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/build install --record /home/shuksham/Self-Moving-Car/ros2_ws/build/circular_drive_controller/install.log --single-version-externally-managed install_data
