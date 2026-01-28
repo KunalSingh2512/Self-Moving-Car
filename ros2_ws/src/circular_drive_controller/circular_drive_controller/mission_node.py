@@ -2,7 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Point, Twist
+from geometry_msgs.msg import Point
 from sensor_msgs.msg import NavSatFix
 from geopy.distance import geodesic
 from pyproj import Proj
@@ -22,7 +22,7 @@ class MissionNode(Node):
         # GNSS offset (12cm behind robot center)
         self.gnss_offset_x = -0.12  # Meters
 
-        # Simulation parameters
+        # Simulation parameters 
         self.declare_parameter('simulate_gnss', True)  # Enable simulation if no real GNSS
         self.declare_parameter('simulation_speed', 0.00001)  # Degrees per second (approx 1m/s)
         self.simulate_gnss = self.get_parameter('simulate_gnss').value
@@ -45,8 +45,7 @@ class MissionNode(Node):
             10
         )
 
-        # Velocity publisher
-        self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+
 
         # Target waypoint publisher
         self.publisher_ = self.create_publisher(Point, '/target_waypoint', 10)
@@ -100,15 +99,14 @@ class MissionNode(Node):
             self.gnss_received = True  # Treat as received for logic
 
         msg = Point()
-        cmd = Twist()
+        
 
         if not self.gnss_received:
             # Fallback: Stop
             msg.x = 0.0
             msg.y = 0.0
             msg.z = 0.0
-            cmd.linear.x = 0.0
-            cmd.angular.z = 0.0
+    
             self.get_logger().warn("No GNSS: Publishing stop.")
         else:
             # Get current waypoint
@@ -143,13 +141,11 @@ class MissionNode(Node):
                 self.get_logger().info(f"Waypoint {self.wp_index+1} REACHED ✅ | Looping to next.")
                 self.wp_index = (self.wp_index + 1) % len(WAYPOINTS)
 
-            # Velocity control
-            cmd.linear.x = min(0.5, dist * 0.1)
-            cmd.angular.z = 0.5 * bearing
+            
 
         # Publish
         self.publisher_.publish(msg)
-        self.cmd_pub.publish(cmd)
+        
 
 def main():
     rclpy.init()
