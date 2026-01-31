@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Mission Node: Large Tangent Circle with Precision Arrival
-- Radius increased to 8.0m.
-- Tolerance reduced to 0.5m to force the car to 'touch' the loop-closing point.
-"""
 
 import rclpy
 from rclpy.node import Node
@@ -17,7 +12,7 @@ class MissionNode(Node):
         super().__init__('mission_node')
 
         # ===== CONFIGURATION =====
-        self.radius = 8.0           # Increased Radius
+        self.radius = 8.0           # Radius
         self.waypoint_count = 72    # More points for a smoother large circle
         self.arrival_dist = 0.6     # High Precision: Force robot to get close (touch the point)
         
