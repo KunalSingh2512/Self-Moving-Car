@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""
-ROS2 Control Node - Robust Sensor Fusion
-Uses:
-1. ODOM: For Velocity (Speed)
-2. IMU: For Angular Velocity (Smooth Turns)
-3. GNSS: For Absolute Position AND True Heading Correction
-"""
+
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
