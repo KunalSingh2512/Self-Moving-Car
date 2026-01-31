@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuksham/Self-Moving-Car/ros2_ws/src/my_car_description
+CMAKE_SOURCE_DIR = /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description
+CMAKE_BINARY_DIR = /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description
 
 # Utility rule file for my_car_description_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/my_car_description_uninstall.dir/compiler_depend.make
 include CMakeFiles/my_car_description_uninstall.dir/progress.make
 
 CMakeFiles/my_car_description_uninstall:
-	/usr/bin/cmake -P /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 my_car_description_uninstall: CMakeFiles/my_car_description_uninstall
 my_car_description_uninstall: CMakeFiles/my_car_description_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/my_car_description_uninstall.dir/clean:
 .PHONY : CMakeFiles/my_car_description_uninstall.dir/clean
 
 CMakeFiles/my_car_description_uninstall.dir/depend:
-	cd /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shuksham/Self-Moving-Car/ros2_ws/src/my_car_description /home/shuksham/Self-Moving-Car/ros2_ws/src/my_car_description /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description /home/shuksham/Self-Moving-Car/ros2_ws/build/my_car_description/CMakeFiles/my_car_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description/CMakeFiles/my_car_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/my_car_description_uninstall.dir/depend
 

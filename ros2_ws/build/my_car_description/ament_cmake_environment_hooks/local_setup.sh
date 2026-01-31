@@ -2,7 +2,7 @@
 
 # since this file is sourced use either the provided AMENT_CURRENT_PREFIX
 # or fall back to the destination set at configure time
-: ${AMENT_CURRENT_PREFIX:="/home/shuksham/Self-Moving-Car/ros2_ws/install/my_car_description"}
+: ${AMENT_CURRENT_PREFIX:="/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description"}
 if [ ! -d "$AMENT_CURRENT_PREFIX" ]; then
   if [ -z "$COLCON_CURRENT_PREFIX" ]; then
     echo "The compile time prefix path '$AMENT_CURRENT_PREFIX' doesn't " \
