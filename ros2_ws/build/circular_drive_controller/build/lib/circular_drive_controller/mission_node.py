@@ -12,39 +12,49 @@ class MissionNode(Node):
         super().__init__('mission_node')
 
         # ===== CONFIGURATION =====
+        # Simulation/Path parameters
         self.radius = 8.0           # Radius
-        self.waypoint_count = 72    # More points for a smoother large circle
-        self.arrival_dist = 0.6     # High Precision: Force robot to get close (touch the point)
-        
-        # ===== STATE =====
-        self.origin_lat = None
-        self.origin_lon = None
-        self.current_lat = None
-        self.current_lon = None
+        self.waypoint_count = 72    # More points for smoother circular motion
+        self.arrival_dist = 0.6     # High Precision: Force robot to get close
+
+        # State variables
+        self.origin_latitude = None
+        self.origin_longitude = None
+        self.current_latitude = None
+        self.current_longitude = None
         
         self.waypoints_enu = []     # List of (East, North) tuples
         self.wp_index = 0           # Current target index
         self.path_generated = False
 
-        # ===== I/O =====
-        self.create_subscription(NavSatFix, '/gnss/fix', self.gnss_callback, 10)
-        self.target_pub = self.create_publisher(Point, '/target_waypoint', 10)
-        self.viz_pub = self.create_publisher(MarkerArray, '/waypoint_markers', 10)
+        # GNSS subscriber
+        self.create_subscription(
+            NavSatFix, 
+            '/gnss/fix', 
+            self.gnss_callback, 
+            10
+        )
 
-        # Control Loop (10Hz)
-        self.timer = self.create_timer(0.1, self.control_loop)
+        # Target waypoint publisher
+        self.publisher_ = self.create_publisher(Point, '/target_waypoint', 10)
         
-        self.get_logger().info("🔵 Mission Node Waiting for GPS Fix...")
+        # Visualization publisher (Added to match functionality)
+        self.viz_publisher_ = self.create_publisher(MarkerArray, '/waypoint_markers', 10)
+
+        # Timer for control loop (10Hz)
+        self.timer = self.create_timer(0.1, self.timer_callback)
+        
+        self.get_logger().info("🔵 Mission Node Started: Waiting for GPS Fix...")
 
     def gnss_callback(self, msg):
-        self.current_lat = msg.latitude
-        self.current_lon = msg.longitude
+        self.current_latitude = msg.latitude
+        self.current_longitude = msg.longitude
 
         # Set Origin on First Fix
-        if self.origin_lat is None:
-            self.origin_lat = msg.latitude
-            self.origin_lon = msg.longitude
-            self.get_logger().info(f"✅ Origin Set: {self.origin_lat}, {self.origin_lon}")
+        if self.origin_latitude is None:
+            self.origin_latitude = msg.latitude
+            self.origin_longitude = msg.longitude
+            self.get_logger().info(f"✅ Origin Set: {self.origin_latitude}, {self.origin_longitude}")
             self.generate_tangent_path()
 
     def generate_tangent_path(self):
@@ -68,15 +78,15 @@ class MissionNode(Node):
         self.path_generated = True
         self.get_logger().info(f"🚀 Path Generated: {len(self.waypoints_enu)} points (Radius: {self.radius}m).")
 
-    def control_loop(self):
-        if not self.path_generated or self.current_lat is None:
+    def timer_callback(self):
+        if not self.path_generated or self.current_latitude is None:
             return
 
-        # 1. Calculate Current Position in Meters
+        # 1. Calculate Current Position in Meters (Manual ENU conversion)
         R_EARTH = 6371000.0
-        d_lat = math.radians(self.current_lat - self.origin_lat)
-        d_lon = math.radians(self.current_lon - self.origin_lon)
-        lat0 = math.radians(self.origin_lat)
+        d_lat = math.radians(self.current_latitude - self.origin_latitude)
+        d_lon = math.radians(self.current_longitude - self.origin_longitude)
+        lat0 = math.radians(self.origin_latitude)
 
         curr_north = d_lat * R_EARTH
         curr_east = d_lon * R_EARTH * math.cos(lat0)
@@ -87,19 +97,21 @@ class MissionNode(Node):
 
         # 3. Switch Logic (Stricter now!)
         # Only switch if we are strictly within 0.6m of the dot.
-        # This ensures we don't "cut corners" and actually touch the return point.
         if dist < self.arrival_dist:
             old_index = self.wp_index
             self.wp_index = (self.wp_index + 1) % len(self.waypoints_enu)
             self.get_logger().info(f"📍 Touched WP#{old_index}. Moving to #{self.wp_index}")
 
-        # 4. Publish Target for Control Node
+        # 4. Prepare Message
         target_pt = self.waypoints_enu[self.wp_index]
         
         msg = Point()
         msg.x = float(target_pt[0]) # East
         msg.y = float(target_pt[1]) # North
-        self.target_pub.publish(msg)
+        msg.z = 0.0
+
+        # Publish
+        self.publisher_.publish(msg)
 
         # 5. Visualize
         self.publish_markers()
@@ -124,7 +136,7 @@ class MissionNode(Node):
             m.pose.position.x = e
             m.pose.position.y = n
             arr.markers.append(m)
-        self.viz_pub.publish(arr)
+        self.viz_publisher_.publish(arr)
 
 def main():
     rclpy.init()

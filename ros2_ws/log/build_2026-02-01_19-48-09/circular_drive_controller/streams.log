@@ -1,0 +1,25 @@
+[1.965s] Invoking command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/circular_drive_controller': PYTHONPATH=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/circular_drive_controller build --build-base /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build install --record /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/install.log --single-version-externally-managed install_data
+[2.216s] running egg_info
+[2.218s] writing ../../build/circular_drive_controller/circular_drive_controller.egg-info/PKG-INFO
+[2.218s] writing dependency_links to ../../build/circular_drive_controller/circular_drive_controller.egg-info/dependency_links.txt
+[2.218s] writing entry points to ../../build/circular_drive_controller/circular_drive_controller.egg-info/entry_points.txt
+[2.219s] writing requirements to ../../build/circular_drive_controller/circular_drive_controller.egg-info/requires.txt
+[2.219s] writing top-level names to ../../build/circular_drive_controller/circular_drive_controller.egg-info/top_level.txt
+[2.221s] reading manifest file '../../build/circular_drive_controller/circular_drive_controller.egg-info/SOURCES.txt'
+[2.222s] writing manifest file '../../build/circular_drive_controller/circular_drive_controller.egg-info/SOURCES.txt'
+[2.222s] running build
+[2.222s] running build_py
+[2.222s] copying circular_drive_controller/mission_node.py -> /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build/lib/circular_drive_controller
+[2.222s] running install
+[2.223s] running install_lib
+[2.224s] copying /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build/lib/circular_drive_controller/mission_node.py -> /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller
+[2.225s] byte-compiling /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller/mission_node.py to mission_node.cpython-310.pyc
+[2.227s] running install_data
+[2.227s] running install_egg_info
+[2.231s] removing '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[2.233s] Copying ../../build/circular_drive_controller/circular_drive_controller.egg-info to /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular_drive_controller-0.0.0-py3.10.egg-info
+[2.234s] running install_scripts
+[2.258s] Installing control_node script to /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.258s] Installing mission_node script to /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.259s] writing list of installed files to '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/install.log'
+[2.288s] Invoked command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/circular_drive_controller' returned '0': PYTHONPATH=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/circular_drive_controller build --build-base /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build install --record /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/install.log --single-version-externally-managed install_data
