@@ -51,7 +51,7 @@ class EKF:
 
     def predict(self, imu_data, encoder_data):
         """PREDICTION STEP: Update state using IMU + Encoder (Unicycle Model)"""
-        # Unpack 5-state vector (matching Abhay's terminology style)
+        # Unpack 5-state vector
         pn, pe, psi, v, bgz = self.x
         
         # Inputs
@@ -166,7 +166,6 @@ class EKF:
         lat_rad = math.radians(self.origin_lat)
         
         # Note: In standard ENU, Y is North, X is East. 
-        # But keeping Abhay's pn/pe terminology:
         # p_n (North) corresponds to Latitude change
         # p_e (East) corresponds to Longitude change
         p_n = delta_lat * self.R_earth
@@ -268,7 +267,6 @@ class ControlNode(Node):
             return
         
         # ===== STEP 2: GET ESTIMATED STATE =====
-        # Mapping 5-state vector to Abhay's terminology
         estimated_pn = self.ekf.x[0]      # East/X
         estimated_pe = self.ekf.x[1]      # North/Y
         estimated_psi = self.ekf.x[2]     # Yaw
