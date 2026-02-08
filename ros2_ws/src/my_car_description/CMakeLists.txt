@@ -7,16 +7,21 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  set(ament_cmake_copyright_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+# 1. Install the Launch Files (The Ignition Keys)
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
 
-# Install launch files
+# 2. Install the URDF (The Body)
 install(DIRECTORY
   urdf
-  launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+# 3. Install RViz Configs (The Visualizer Settings)
+install(DIRECTORY
+  rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
