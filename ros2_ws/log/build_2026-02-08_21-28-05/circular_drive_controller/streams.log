@@ -1,0 +1,20 @@
+[1.812s] Invoking command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller': PYTHONPATH=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build --no-deps symlink_data --force
+[2.083s] running develop
+[2.253s] running egg_info
+[2.253s] writing circular_drive_controller.egg-info/PKG-INFO
+[2.253s] writing dependency_links to circular_drive_controller.egg-info/dependency_links.txt
+[2.253s] writing entry points to circular_drive_controller.egg-info/entry_points.txt
+[2.254s] writing requirements to circular_drive_controller.egg-info/requires.txt
+[2.254s] writing top-level names to circular_drive_controller.egg-info/top_level.txt
+[2.256s] reading manifest file 'circular_drive_controller.egg-info/SOURCES.txt'
+[2.258s] writing manifest file 'circular_drive_controller.egg-info/SOURCES.txt'
+[2.259s] running build_ext
+[2.260s] Creating /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages/circular-drive-controller.egg-link (link to .)
+[2.260s] Installing control_node script to /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.261s] Installing mission_node script to /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/circular_drive_controller
+[2.261s] 
+[2.261s] Installed /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller
+[2.261s] running symlink_data
+[2.261s] symbolically linking /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/resource/circular_drive_controller -> /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/share/ament_index/resource_index/packages
+[2.261s] symbolically linking /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/package.xml -> /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/share/circular_drive_controller
+[2.289s] Invoked command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller' returned '0': PYTHONPATH=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/circular_drive_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/circular_drive_controller/build --no-deps symlink_data --force

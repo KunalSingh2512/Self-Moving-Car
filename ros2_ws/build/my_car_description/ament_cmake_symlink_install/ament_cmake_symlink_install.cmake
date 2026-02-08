@@ -310,8 +310,8 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install(DIRECTORY "launch" "urdf" "DESTINATION" "share/my_car_description")
-ament_cmake_symlink_install_directory("/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description" DIRECTORY "launch" "urdf" "DESTINATION" "share/my_car_description")
+# install(DIRECTORY "urdf" "launch" "DESTINATION" "share/my_car_description")
+ament_cmake_symlink_install_directory("/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description" DIRECTORY "urdf" "launch" "DESTINATION" "share/my_car_description")
 
 # install(FILES "/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_car_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description" FILES "/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/my_car_description" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

@@ -15,8 +15,8 @@ endif()
 
 # Install launch files
 install(DIRECTORY
-  launch
   urdf
+  launch
   DESTINATION share/${PROJECT_NAME}
 )
 
