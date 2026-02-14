@@ -223,7 +223,7 @@
             <update_rate>10</update_rate>
             <ray>
                 <scan><horizontal><samples>360</samples><resolution>1</resolution><min_angle>-3.14</min_angle><max_angle>3.14</max_angle></horizontal></scan>
-                <range><min>0.3</min><max>12</max></range>
+                <range><min>0.3</min><max>70</max></range>
             </ray>
             <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros><argument>~/out:=scan</argument></ros>
