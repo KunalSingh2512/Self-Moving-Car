@@ -17,13 +17,11 @@ def generate_launch_description():
     robot_description_raw = xacro.process_file(xacro_file).toxml()
 
     # 2. Launch Gazebo (The Physics Engine)
-    # We use the standard empty world for now
     gazebo = ExecuteProcess(
         cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_path],
         output='screen'
     )
 
-    # 3. Spawn the Robot (The "Birth" of the car)
     # 3. Spawn the Robot (The "Birth" of the car)
     spawn_entity = Node(
         package='gazebo_ros',
