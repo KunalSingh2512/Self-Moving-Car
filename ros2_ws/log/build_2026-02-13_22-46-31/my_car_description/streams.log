@@ -1,0 +1,46 @@
+[0.047s] Invoking command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description -DCMAKE_INSTALL_PREFIX=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description
+[1.967s] -- The C compiler identification is GNU 11.4.0
+[2.701s] -- The CXX compiler identification is GNU 11.4.0
+[2.710s] -- Detecting C compiler ABI info
+[2.943s] -- Detecting C compiler ABI info - done
+[2.949s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.950s] -- Detecting C compile features
+[2.983s] -- Detecting C compile features - done
+[2.991s] -- Detecting CXX compiler ABI info
+[3.143s] -- Detecting CXX compiler ABI info - done
+[3.152s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[3.152s] -- Detecting CXX compile features
+[3.152s] -- Detecting CXX compile features - done
+[3.228s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[3.474s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[3.758s] -- Configuring done
+[3.761s] -- Generating done
+[3.763s] -- Build files have been written to: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description
+[3.768s] Invoked command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description -DCMAKE_INSTALL_PREFIX=/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description
+[3.769s] Invoking command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description -- -j4 -l4
+[3.800s] Invoked command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description -- -j4 -l4
+[3.808s] Invoking command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description
+[3.815s] -- Install configuration: ""
+[3.815s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/launch
+[3.815s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/launch/display.launch.py
+[3.815s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/launch/gazebo.launch.py
+[3.815s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/urdf
+[3.815s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/urdf/my_car.urdf.xacro
+[3.845s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/urdf/my_car.urdf
+[3.845s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/rviz
+[3.845s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/ament_index/resource_index/package_run_dependencies/my_car_description
+[3.845s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/ament_index/resource_index/parent_prefix_path/my_car_description
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/environment/ament_prefix_path.sh
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/environment/ament_prefix_path.dsv
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/environment/path.sh
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/environment/path.dsv
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/local_setup.bash
+[3.846s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/local_setup.sh
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/local_setup.zsh
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/local_setup.dsv
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/package.dsv
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/ament_index/resource_index/packages/my_car_description
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/cmake/my_car_descriptionConfig.cmake
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/cmake/my_car_descriptionConfig-version.cmake
+[3.847s] -- Installing: /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/install/my_car_description/share/my_car_description/package.xml
+[3.850s] Invoked command in '/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description
