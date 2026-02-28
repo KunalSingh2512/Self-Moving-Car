@@ -1,1 +1,0 @@
-/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/build/my_car_description/ament_cmake_core/my_car_descriptionConfig.cmake

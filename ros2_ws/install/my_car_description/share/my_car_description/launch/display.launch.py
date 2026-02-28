@@ -1,1 +1,0 @@
-/home/kunal-singh/Desktop/Self_Moving_Car/ros2_ws/src/my_car_description/launch/display.launch.py
