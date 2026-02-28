@@ -9,6 +9,9 @@ def generate_launch_description():
     pkg_name = 'my_car_description'
     pkg_share = get_package_share_directory(pkg_name)
 
+    tb3_gazebo_share = get_package_share_directory('turtlebot3_gazebo')
+    world_path = os.path.join(tb3_gazebo_share, 'worlds', 'turtlebot3_world.world')
+
     # 1. Process the URDF
     xacro_file = os.path.join(pkg_share, 'urdf', 'my_car.urdf.xacro')
     robot_description_raw = xacro.process_file(xacro_file).toxml()
@@ -16,17 +19,20 @@ def generate_launch_description():
     # 2. Launch Gazebo (The Physics Engine)
     # We use the standard empty world for now
     gazebo = ExecuteProcess(
-        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_path],
         output='screen'
     )
 
+    # 3. Spawn the Robot (The "Birth" of the car)
     # 3. Spawn the Robot (The "Birth" of the car)
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
         arguments=['-topic', 'robot_description',
-                   '-entity', 'my_car',
-                   '-z', '0.1'], # Spawn slightly above ground to prevent clipping
+                '-entity', 'my_car',
+                '-x', '-2.0',  # Safe distance from the center pillars
+                '-y', '-0.5',  # Slightly offset to avoid the back wall
+                '-z', '0.5'],  # Drop from 50cm to let gravity settle it
         output='screen'
     )
 
