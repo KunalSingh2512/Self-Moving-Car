@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
-from std_msgs.msg import String  # We will upgrade this to your Custom Message later!
+from my_car_interfaces.msg import ObstacleInfo
 from cv_bridge import CvBridge
 import cv2
 from ultralytics import YOLO
@@ -23,36 +23,28 @@ class YoloNode(Node):
             self.image_callback, 
             10)
             
-        # Publish the AI output for Saloni's Local Planner
-        self.publisher_ = self.create_publisher(String, '/yolo_obstacles', 10)
+        # Publish the AI output using YOUR custom interface
+        self.publisher_ = self.create_publisher(ObstacleInfo, '/yolo_obstacles', 10)
 
     def image_callback(self, msg):
         # 1. Convert ROS Image to OpenCV format
         cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
 
         # ==========================================
-        # ⚠️ KUNAL: WRITE YOLO LOGIC HERE ⚠️
+        # ⚠️ KUNAL: WRITE YOLO LOGIC HERE LATER ⚠️
         # Task: Run inference on cv_image. 
         # Label objects as "Passable" vs "Critical".
         # ==========================================
         
-        # Example of running the model:
-        # results = self.model(cv_image)
-        # for r in results:
-        #     boxes = r.boxes
-        #     ... your filtering logic here ...
+        # 2. Publish dummy data to keep the ROS 2 graph happy 
+        #    until you write the real YOLO code above.
+        msg_out = ObstacleInfo()
+        msg_out.object_label = "Waiting_For_YOLO" 
+        msg_out.distance = 0.0          
+        msg_out.height = 0.0            
+        msg_out.is_passable = True      
         
-        output_label = "Placeholder_Label" 
-        
-        # 2. Publish the result to the ROS graph
-        msg_out = String()
-        msg_out.data = output_label
         self.publisher_.publish(msg_out)
-
-        # 3. Optional: Display the YOLO vision on your laptop screen
-        # annotated_frame = results[0].plot()
-        # cv2.imshow("YOLOv8 Vision", annotated_frame)
-        # cv2.waitKey(1)
 
 def main(args=None):
     rclpy.init(args=args)
