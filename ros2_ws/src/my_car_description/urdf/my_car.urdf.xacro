@@ -156,22 +156,16 @@
     <xacro:front_wheel name="left_front"  x="${wheel_offset_x}"  y="${wheel_offset_y}"/>
     <xacro:front_wheel name="right_front" x="${wheel_offset_x}"  y="-${wheel_offset_y}"/>
 
-    <joint name="lidar_joint" type="fixed">
+    <joint name="ultrasonic_joint" type="fixed">
         <parent link="roof"/>
-        <child link="laser_frame"/>
-        <origin xyz="0 0 0.025" rpy="0 0 0"/> 
-    </joint>
-    <link name="laser_frame">
-        <visual><geometry><cylinder radius="0.03" length="0.04"/></geometry><material name="blue"/></visual>
-    </link>
-
-    <joint name="camera_joint" type="fixed">
-        <parent link="roof"/>
-        <child link="camera_link"/>
+        <child link="ultrasonic_link"/>
         <origin xyz="${stack_length/2 + 0.01} 0 0.015" rpy="0 0 0"/> 
     </joint>
-    <link name="camera_link">
-        <visual><geometry><box size="0.02 0.04 0.02"/></geometry><material name="red"/></visual>
+    <link name="ultrasonic_link">
+        <visual>
+            <geometry><box size="0.02 0.04 0.02"/></geometry>
+            <material name="metal"/> 
+        </visual>
     </link>
 
     <joint name="imu_joint" type="fixed">
@@ -183,12 +177,12 @@
         <visual><geometry><box size="0.05 0.05 0.05"/></geometry><material name="purple"/></visual>
     </link>
 
-    <joint name="gnss_joint" type="fixed">
+    <joint name="gps_joint" type="fixed">
         <parent link="roof"/>
-        <child link="gnss_link"/>
+        <child link="gps_link"/>
         <origin xyz="-0.12 0 0.015" rpy="0 0 0"/> 
     </joint>
-    <link name="gnss_link">
+    <link name="gps_link">
         <visual><geometry><cylinder radius="0.02" length="0.02"/></geometry><material name="yellow"/></visual>
     </link>
 
@@ -216,50 +210,39 @@
         </plugin>
     </gazebo>
 
-    <gazebo reference="laser_frame">
-        <sensor name="lidar" type="gpu_ray">
+    <gazebo reference="ultrasonic_link">
+        <sensor name="ultrasonic_sensor" type="ray">
             <always_on>true</always_on>
-            <visualize>false</visualize> <update_rate>20.0</update_rate>
+            <visualize>true</visualize> 
+            <update_rate>10.0</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>90</samples>
+                        <samples>5</samples>
                         <resolution>1</resolution>
-                        <min_angle>-3.14159</min_angle>
-                        <max_angle>3.14159</max_angle>
+                        <min_angle>-0.26</min_angle> 
+                        <max_angle>0.26</max_angle>  
                     </horizontal>
                     <vertical>
-                        <samples>16</samples>
+                        <samples>5</samples>
                         <resolution>1</resolution>
-                        <min_angle>-0.349066</min_angle> <max_angle>0.349066</max_angle>  </vertical>
+                        <min_angle>-0.1</min_angle>
+                        <max_angle>0.1</max_angle>
+                    </vertical>
                 </scan>
                 <range>
-                    <min>0.3</min>
-                    <max>12.0</max>
+                    <min>0.02</min>
+                    <max>4.0</max> 
                     <resolution>0.01</resolution>
                 </range>
             </ray>
-            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+            <plugin name="ultrasonic_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
-                    <remapping>~/out:=/scan</remapping>
+                    <remapping>~/out:=/ultrasonic/range</remapping>
                 </ros>
-                <output_type>sensor_msgs/PointCloud2</output_type>
-                <frame_name>laser_frame</frame_name>
-            </plugin>
-        </sensor>
-    </gazebo>
-
-    <gazebo reference="camera_link">
-        <sensor name="camera" type="camera">
-            <visualize>true</visualize>
-            <update_rate>30.0</update_rate>
-            <camera>
-                <horizontal_fov>1.089</horizontal_fov>
-                <image><format>R8G8B8</format><width>320</width><height>240</height></image>
-                <clip><near>0.05</near><far>8.0</far></clip>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <frame_name>camera_link</frame_name>
+                <output_type>sensor_msgs/Range</output_type>
+                <radiation_type>ultrasound</radiation_type>
+                <frame_name>ultrasonic_link</frame_name>
             </plugin>
         </sensor>
     </gazebo>
@@ -287,16 +270,16 @@
         </sensor>
     </gazebo>
 
-    <gazebo reference="gnss_link">
-        <sensor name="gnss_sensor" type="gps">
+    <gazebo reference="gps_link">
+        <sensor name="gps_sensor" type="gps">
             <always_on>true</always_on>
             <update_rate>5.0</update_rate>
-            <plugin name="gnss_controller" filename="libgazebo_ros_gps_sensor.so">
+            <plugin name="gps_controller" filename="libgazebo_ros_gps_sensor.so">
                 <ros>
-                    <remapping>~/out:=/gnss/fix</remapping>
+                    <remapping>~/out:=/gps/fix</remapping>
                 </ros>
                 <output_type>sensor_msgs/NavSatFix</output_type>
-                <frame_name>gnss_link</frame_name>
+                <frame_name>gps_link</frame_name>
             </plugin>
         </sensor>
     </gazebo>
@@ -309,10 +292,9 @@
     <gazebo reference="platform_1"><material>Gazebo/Orange</material></gazebo>
     <gazebo reference="roof"><material>Gazebo/Orange</material></gazebo>
     
-    <gazebo reference="laser_frame"><material>Gazebo/Blue</material></gazebo>
-    <gazebo reference="camera_link"><material>Gazebo/Red</material></gazebo>
+    <gazebo reference="ultrasonic_link"><material>Gazebo/Blue</material></gazebo>
     <gazebo reference="imu_link"><material>Gazebo/Purple</material></gazebo>
-    <gazebo reference="gnss_link"><material>Gazebo/Yellow</material></gazebo>
+    <gazebo reference="gps_link"><material>Gazebo/Yellow</material></gazebo>
 
     <gazebo reference="left_rear_wheel">
         <material>Gazebo/FlatBlack</material>
