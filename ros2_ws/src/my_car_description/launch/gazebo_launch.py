@@ -15,8 +15,12 @@ def generate_launch_description():
     doc = xacro.process_file(xacro_file)
     robot_desc = doc.toxml()
 
+    # Loading the custom GPS World ---
+    world_file = os.path.join(pkg_share, 'world', 'SRM.world')
+
     gazebo = ExecuteProcess(
-        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+        # Notice world_file added to the command array below
+        cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world_file],
         output='screen'
     )
 

@@ -8,7 +8,7 @@ Logic: Motion-Derived Heading to fix shaking/U-turns + Emergency Braking
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
-from sensor_msgs.msg import Imu, Range, NavSatFix
+from sensor_msgs.msg import Imu, LaserScan, NavSatFix
 from geometry_msgs.msg import Point, Twist, PoseStamped
 import math
 import numpy as np
@@ -147,9 +147,9 @@ class ControlNode(Node):
         # FIXED: Changed topic to /gps/fix
         self.gnss_sub = self.create_subscription(
             NavSatFix, '/gps/fix', self.gnss_callback, 10)
-        # NEW: Ultrasonic Subscriber
+        # UPGRADED: Ultrasonic Subscriber now reads the full LaserScan array
         self.ultrasonic_sub = self.create_subscription(
-            Range, '/ultrasonic/range', self.ultrasonic_callback, 10)
+            LaserScan, '/ultrasonic/scan', self.ultrasonic_callback, 10)
         
         # ===== PUBLISHERS =====
         self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
@@ -171,7 +171,8 @@ class ControlNode(Node):
         
         # Obstacle avoidance variables
         self.front_clearance = 4.0 # Default to max range (clear path)
-        self.emergency_brake_distance = 0.6 # Meters. Stop if anything is closer than this!
+        self.emergency_brake_distance = 1.2 # Meters. Stop if anything is closer than this!
+        self.brake_latch_counter = 0
         
         self.kp_linear = 0.8
         self.kp_angular = 1.0
@@ -196,9 +197,16 @@ class ControlNode(Node):
         self.target_y = msg.y
 
     def ultrasonic_callback(self, msg):
-        """Update the front clearance distance from the virtual HC-SR04"""
-        self.front_clearance = msg.range
-
+        """Scan all 30 rays and find the absolute closest object"""
+        # Filter out rays that hit nothing (Gazebo returns 'inf' or 'nan' for empty space)
+        valid_ranges = [r for r in msg.ranges if not math.isinf(r) and not math.isnan(r)]
+        
+        if valid_ranges:
+            # If any rays hit something, find the closest one
+            self.front_clearance = min(valid_ranges)
+        else:
+            # If all rays hit nothing, the path is clear to the max distance
+            self.front_clearance = 4.0
     def control_loop(self):
         # ===== STEP 1: EKF PREDICTION =====
         imu_data = {'omega_z': self.imu_angular_z}
@@ -250,10 +258,12 @@ class ControlNode(Node):
         # ===== STEP 5: ULTRASONIC EMERGENCY BRAKE =====
         if self.front_clearance < self.emergency_brake_distance:
             self.get_logger().warn(f"OBSTACLE DETECTED AT {self.front_clearance:.2f}m! Engaging Emergency Brake.")
-            cmd.linear.x = 0.0 # Halt forward momentum instantly
-            # We allow angular.z to remain so the robot can potentially turn away from the obstacle in future logic, 
-            # but for strict safety, we can zero it too:
-            cmd.angular.z = 0.0 
+            self.brake_latch_counter = 10  # Latch brakes for 10 loops (0.5 seconds)
+            
+        if self.brake_latch_counter > 0:
+            cmd.linear.x = 0.0 
+            cmd.angular.z = 0.0
+            self.brake_latch_counter -= 1
         
         # ===== STEP 6: PUBLISH COMMANDS =====
         self.cmd_pub.publish(cmd)
