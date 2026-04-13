@@ -161,7 +161,7 @@ class ControlNode(Node):
         Q = np.diag([0.01, 0.01, 0.01, 0.1, 0.001])
         R = np.diag([0.5, 0.5, 0.2])
         self.ekf = EKF(x0, P0, Q, R, dt=0.05)
-        self.get_logger().info("✓ Jarvis System Online. EKF and Safety Protocols Initialized!")
+        self.get_logger().info("EKF and Safety Protocols Initialized!")
         
         # ===== STATE VARIABLES =====
         self.imu_angular_z = 0.0
