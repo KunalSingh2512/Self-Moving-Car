@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ROS2 Control Node - Integrated 5-State EKF & Ultrasonic Avoidance
-UPGRADE: Fixed EKF History Bug + 'Pivot and Punch' Navigation
+REAL WORLD EDITION: Mode (2.5 m/s | 2.0 rad/s)
 """
 
 import rclpy
@@ -83,7 +83,6 @@ class EKF:
             
             R_step = self.R
             
-            # JARVIS FIX: Only reset history AFTER we actually move 0.15m!
             self.prev_pn_gnss = pn_gnss
             self.prev_pe_gnss = pe_gnss
         else:
@@ -122,7 +121,6 @@ class EKF:
         
         return p_e, p_n 
 
-
 # =====================================================
 # ROS2 CONTROL NODE WITH EKF & ULTRASONIC
 # =====================================================
@@ -145,7 +143,7 @@ class ControlNode(Node):
         Q = np.diag([0.01, 0.01, 0.01, 0.1, 0.001])
         R = np.diag([0.5, 0.5, 0.2])
         self.ekf = EKF(x0, P0, Q, R, dt=0.05)
-        self.get_logger().info("✓ Jarvis System Online. EKF Math Fixed and Pivot Logic Engaged!")
+        self.get_logger().info("✓ 2.5 m/s).")
         
         self.imu_angular_z = 0.0
         self.encoder_v_linear = 0.0
@@ -153,11 +151,11 @@ class ControlNode(Node):
         self.target_y = 0.0
         
         self.front_clearance = 4.0 
-        self.emergency_brake_distance = 1.2 
+        self.emergency_brake_distance = 2.5 # INCREASED to handle sliding inertia at high speed
         self.brake_latch_counter = 0
         
-        self.kp_linear = 0.8
-        self.kp_angular = 1.2
+        self.kp_linear = 1.5   # INCREASED for aggressive acceleration
+        self.kp_angular = 1.5  # INCREASED for sharp tracking
         
         self.create_timer(0.05, self.control_loop)
 
@@ -215,14 +213,19 @@ class ControlNode(Node):
         if self.ekf.origin_lat is None:
             return
 
-        # JARVIS FIX: Pivot and Punch Logic
+        # FIX: Pivot and Punch Logic 
         if distance_error > 0.2:
-            if abs(heading_error) > 0.4: # If heading is off by > ~23 degrees, STOP AND PIVOT
+            if abs(heading_error) > 0.4: 
                  cmd.linear.x = 0.0
-                 cmd.angular.z = math.copysign(1.0, heading_error) # Spin left or right at 1.0 rad/s
-            else: # If aligned, punch the gas
-                 cmd.linear.x = min(0.6, self.kp_linear * distance_error)
-                 cmd.angular.z = self.kp_angular * heading_error
+                 # HARD CAP: Pivot speed increased to 2.0 rad/s
+                 cmd.angular.z = math.copysign(2.0, heading_error) 
+            else: 
+                 # HARD CAP: Linear speed increased to 2.5 m/s maximum
+                 cmd.linear.x = min(2.5, self.kp_linear * distance_error)
+                 
+                 # HARD CAP: Clamp steering while moving so it never exceeds 2.0 rad/s
+                 calculated_steering = self.kp_angular * heading_error
+                 cmd.angular.z = max(-2.0, min(2.0, calculated_steering))
         else:
             cmd.linear.x = 0.0
             cmd.angular.z = 0.0
@@ -237,18 +240,6 @@ class ControlNode(Node):
             cmd.angular.z = 0.0
             self.brake_latch_counter -= 1
         
-        # TELEMETRY HUD (Prints every 1 second) =====
-        self.telemetry_counter = getattr(self, 'telemetry_counter', 0) + 1
-        if self.telemetry_counter % 20 == 0: 
-            self.get_logger().info(
-                f"\n=== TELEMETRY HUD ===\n"
-                f"TARGET   : X:{self.target_x:.2f}, Y:{self.target_y:.2f}\n"
-                f"CURRENT  : X:{estimated_pn:.2f}, Y:{estimated_pe:.2f}, Yaw:{math.degrees(estimated_psi):.1f}°\n"
-                f"ERRORS   : Dist: {distance_error:.2f}m | Heading: {math.degrees(heading_error):.1f}°\n"
-                f"COMMANDS : Gas: {cmd.linear.x:.2f} m/s | Steering: {cmd.angular.z:.2f} rad/s\n"
-                f"============================"
-            )
-
         self.cmd_pub.publish(cmd)
 
     def publish_estimated_pose(self, pn, pe, psi):
