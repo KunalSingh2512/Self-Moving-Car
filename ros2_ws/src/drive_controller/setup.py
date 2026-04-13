@@ -1,11 +1,12 @@
-from setuptools import find_packages, setup
+from setuptools import setup
 
-package_name = 'circular_drive_controller'
+package_name = 'drive_controller'
+package_dir={'': '.'},
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    packages=[package_name], 
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -24,8 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'mission_node = circular_drive_controller.mission_node:main',
-            'control_node = circular_drive_controller.control_node:main',
+            'mission_node = drive_controller.mission_node:main',
+            'control_node = drive_controller.control_node:main',
         ],
     },
 )
