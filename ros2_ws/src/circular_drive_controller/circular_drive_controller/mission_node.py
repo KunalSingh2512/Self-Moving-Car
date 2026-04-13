@@ -10,7 +10,7 @@ class MissionNode(Node):
     def __init__(self):
         super().__init__('mission_node')
 
-        self.arrival_dist = 2.0
+        self.arrival_dist = 2.0 
 
         self.origin_latitude = None
         self.origin_longitude = None
