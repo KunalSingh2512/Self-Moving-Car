@@ -247,7 +247,7 @@ class ControlNode(Node):
             cmd.linear.x = 0.0
             cmd.angular.z = 0.0
             
-        # ===== STEP 5: ULTRASONIC EMERGENCY BRAKE (JARVIS OVERRIDE) =====
+        # ===== STEP 5: ULTRASONIC EMERGENCY BRAKE =====
         if self.front_clearance < self.emergency_brake_distance:
             self.get_logger().warn(f"OBSTACLE DETECTED AT {self.front_clearance:.2f}m! Engaging Emergency Brake.")
             cmd.linear.x = 0.0 # Halt forward momentum instantly
