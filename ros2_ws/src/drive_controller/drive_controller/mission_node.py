@@ -50,7 +50,7 @@ class MissionNode(Node):
             (28.919285, 77.131085),
             (28.919285, 77.131105),
             (28.919290, 77.131114),
-            (28.919298, 77.130156)
+            (28.919280, 77.131156)  # <-- Fixed: Returns to the exact start
         ]
 
         self.waypoints_enu = []
@@ -72,6 +72,10 @@ class MissionNode(Node):
             self.origin_latitude = msg.latitude
             self.origin_longitude = msg.longitude
             self.get_logger().info(f"GPS Lock acquired! Origin set to: {self.origin_latitude}, {self.origin_longitude}")
+            
+            # THE FIX: Force the absolute final waypoint to be the exact spawn location
+            self.gps_waypoints.append((self.origin_latitude, self.origin_longitude))
+            
             self.generate_gps_waypoint_path()
 
     def latlon_to_enu(self, lat, lon):
