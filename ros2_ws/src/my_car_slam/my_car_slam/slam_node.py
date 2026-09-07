@@ -16,14 +16,14 @@ class SlamNode(Node):
 
     def scan_callback(self, msg):
         # ==========================================
-        # ⚠️ AARUSH & SHUKSHAM: WRITE SLAM LOGIC HERE ⚠️
+        # ⚠️ SHUKSHAM: WRITE SLAM LOGIC HERE ⚠️
         # Task: Process the LiDAR scan data into a 2D map array.
         # ==========================================
         pass
 
     def odom_callback(self, msg):
         # ==========================================
-        # ⚠️ AARUSH & SHUKSHAM: WRITE ODOMETRY LOGIC HERE ⚠️
+        # ⚠️ SHUKSHAM: WRITE ODOMETRY LOGIC HERE ⚠️
         # Task: Track the car's movement to update the map accurately.
         # ==========================================
         pass
