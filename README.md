@@ -27,17 +27,27 @@ Computer Science & AI/ML Department
 
     Kunal Singh (ROS Lead): System Architecture, Simulation (Gazebo), Middleware.
 
-    Yash Dutt (OpenCV Lead): Computer Vision & Lane Detection.
+    Hritvik (OpenCV Lead): Computer Vision & Lane Detection.
 
     Abhay (Sensor Fusion Lead): Odometry & EKF Integration.
 
     Shuksham (SLAM Lead): Mapping & Navigation Stack.
 
+    Vedant: Global Planner
+
+    Saloni : Local Planner
+
+    Ayush : Waypoint Navigation
+
 Electronics & Communication Department
 
     Chirag: Sensor Interfacing, Logic Level Shifting
 
-    Varun Kundnani: Motor driver calibration, BMS, Power Management
+    Omkar: Motor driver calibration, BMS, Power Management
+
+    Kansari Manna: Matlab Simulink with Gazebo
+
+    Arya De Sarkar: Sensor Fusion
 
 Mechanical Engineering Department
 
@@ -46,6 +56,10 @@ Mechanical Engineering Department
     Anant Sidana: Chassis Design, Material Selection, Weight Distribution
 
     Deepanshu: Chassis Design, Wheel Alignment
+
+    Kushagra
+
+    Manav Lourembom: Chassis Design
 
 
 # 🚀 Phase 1: Simulation Goals
