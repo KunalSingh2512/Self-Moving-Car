@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import LaserScan
+from sensor_msgs.msg import PointCloud2
 from nav_msgs.msg import Odometry, OccupancyGrid
 
 class SlamNode(Node):
@@ -8,7 +8,7 @@ class SlamNode(Node):
         super().__init__('slam_node')
         
         # Listening to LiDAR and Odometry
-        self.scan_sub = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
+        self.scan_sub = self.create_subscription(PointCloud2, '/scan', self.scan_callback, 10)
         self.odom_sub = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
         
         # Publishing the 2D Map
