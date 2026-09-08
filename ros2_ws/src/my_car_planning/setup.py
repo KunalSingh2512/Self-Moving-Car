@@ -23,7 +23,9 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-        ],
-    },
+    'console_scripts': [
+        'global_planner_node = my_car_planning.global_planner_node:main',
+        'local_planner_node = my_car_planning.local_planner_node:main',
+    ],
+},
 )

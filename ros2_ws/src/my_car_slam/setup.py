@@ -23,7 +23,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-        ],
-    },
+    'console_scripts': [
+        'slam_node = my_car_slam.slam_node:main',
+    ],
+},
 )

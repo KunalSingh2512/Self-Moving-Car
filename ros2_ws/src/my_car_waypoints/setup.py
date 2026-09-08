@@ -23,7 +23,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-        ],
-    },
+    'console_scripts': [
+        'waypoint_node = my_car_waypoints.waypoint_node:main',
+    ],
+},
 )

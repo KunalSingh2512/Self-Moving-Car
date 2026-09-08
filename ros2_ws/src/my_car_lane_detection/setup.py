@@ -23,7 +23,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-        ],
-    },
+    'console_scripts': [
+        'lane_node = my_car_lane_detection.lane_node:main',
+    ],
+},
 )
