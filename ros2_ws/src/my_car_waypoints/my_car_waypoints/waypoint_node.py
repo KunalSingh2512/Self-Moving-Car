@@ -15,8 +15,18 @@ class WaypointNode(Node):
     def gps_callback(self, msg):
         # ==========================================
         # ⚠️ AYUSH: WRITE WAYPOINT LOGIC HERE ⚠️
-        # Task: Convert latitude/longitude (msg.latitude, msg.longitude)
-        # into local X, Y map coordinates for the planner.
+        #
+        # Task:
+        # Convert GNSS latitude/longitude into
+        # local X-Y coordinates for the planner.
+        #
+        # Output convention:
+        #   x = target X coordinate in meters
+        #   y = target Y coordinate in meters
+        #   z = unused
+        #
+        # The X-Y frame must be consistent with
+        # the SLAM/map coordinate frame.
         # ==========================================
         target_x = 0.0
         target_y = 0.0
