@@ -1,8 +1,10 @@
 import rclpy
 from rclpy.node import Node
-from nav_msgs.msg import Path
+
+from nav_msgs.msg import Path, Odometry
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Float32
+
 from my_car_interfaces.msg import ObstacleInfo
 
 
@@ -10,7 +12,9 @@ class LocalPlannerNode(Node):
     def __init__(self):
         super().__init__('local_planner')
 
-        # Global path
+        # ==========================================
+        # GLOBAL PATH
+        # ==========================================
         self.path_sub = self.create_subscription(
             Path,
             '/global_path',
@@ -18,7 +22,9 @@ class LocalPlannerNode(Node):
             10
         )
 
-        # YOLO obstacle information
+        # ==========================================
+        # YOLO OBSTACLE INFORMATION
+        # ==========================================
         self.yolo_sub = self.create_subscription(
             ObstacleInfo,
             '/yolo_obstacles',
@@ -26,11 +32,13 @@ class LocalPlannerNode(Node):
             10
         )
 
-        # Lane lateral error
+        # ==========================================
+        # LANE OFFSET
         # Unit: meters
         # +ve -> right
         # -ve -> left
-        # 0    -> centered
+        #  0  -> centered
+        # ==========================================
         self.lane_sub = self.create_subscription(
             Float32,
             '/lane_offset',
@@ -38,54 +46,107 @@ class LocalPlannerNode(Node):
             10
         )
 
-        # Publishing velocity commands
+        # ==========================================
+        # VEHICLE ODOMETRY
+        # ==========================================
+        self.odom_sub = self.create_subscription(
+            Odometry,
+            '/odom',
+            self.odom_callback,
+            10
+        )
+
+        # ==========================================
+        # VELOCITY COMMAND
+        # ==========================================
         self.cmd_pub = self.create_publisher(
             Twist,
             '/cmd_vel',
             10
         )
 
-        # Store latest lane information
+        # ==========================================
+        # STORED STATE
+        # ==========================================
+        self.current_path = None
         self.lane_offset = 0.0
 
+        self.current_pose = None
+        self.current_linear_velocity = 0.0
+        self.current_angular_velocity = 0.0
+
+        self.detected_object = None
+        self.distance_to_object = None
+        self.object_height = None
+        self.is_object_passable = True
+
+    # ==========================================
+    # LANE CALLBACK
+    # ==========================================
     def lane_callback(self, msg):
-        # Receive the latest lateral lane error.
-        # Saloni you can use this value in the actual controller.
         self.lane_offset = msg.data
 
+    # ==========================================
+    # YOLO CALLBACK
+    # ==========================================
     def yolo_callback(self, msg):
-        # Now Saloni you can access specific variables!
-        detected_object = msg.object_label
-        distance_to_object = msg.distance
-        is_it_passable = msg.is_passable
+        self.detected_object = msg.object_label
+        self.distance_to_object = msg.distance
+        self.object_height = msg.height
+        self.is_object_passable = msg.is_passable
 
         # ==========================================
-        # ⚠️ SALONI: WRITE DECISION LOGIC HERE ⚠️
+        # ⚠️ SALONI: WRITE OBSTACLE DECISION LOGIC HERE
+        #
+        # Available information:
+        #   self.detected_object
+        #   self.distance_to_object
+        #   self.object_height
+        #   self.is_object_passable
+        #   self.lane_offset
+        # ==========================================
+
+    # ==========================================
+    # PATH CALLBACK
+    # ==========================================
+    def path_callback(self, msg):
+        self.current_path = msg
+
+        # ==========================================
+        # ⚠️ SALONI: WRITE LOCAL PLANNING / CONTROL HERE
         #
         # Inputs available:
-        # - detected_object
-        # - distance_to_object
-        # - msg.height
-        # - is_it_passable
-        # - self.lane_offset
+        #   self.current_path
+        #   self.lane_offset
+        #   self.current_pose
+        #   self.current_linear_velocity
+        #   self.current_angular_velocity
+        #   self.detected_object
+        #   self.distance_to_object
+        #   self.object_height
+        #   self.is_object_passable
         #
+        # Output:
+        #   geometry_msgs/Twist → /cmd_vel
         # ==========================================
 
-    def path_callback(self, msg):
-        # Follow the path when there are no obstacles.
-        #
-        # self.lane_offset contains the latest lane error.
-        #
-        # ==========================================
-        # ⚠️ SALONI: WRITE LOCAL PLANNING / CONTROL HERE ⚠️
-        # ==========================================
-        pass
+    # ==========================================
+    # ODOMETRY CALLBACK
+    # ==========================================
+    def odom_callback(self, msg):
+        self.current_pose = msg.pose.pose
+
+        self.current_linear_velocity = msg.twist.twist.linear.x
+        self.current_angular_velocity = msg.twist.twist.angular.z
 
 
 def main(args=None):
     rclpy.init(args=args)
+
     node = LocalPlannerNode()
+
     rclpy.spin(node)
+
     node.destroy_node()
     rclpy.shutdown()
 
